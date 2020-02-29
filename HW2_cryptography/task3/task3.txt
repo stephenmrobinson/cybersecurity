@@ -1,0 +1,37 @@
+Stephen Robinson
+CSCI 373 - Cybersecurity
+February 24, 2020
+Task 3 - Question 3
+
+Working with parameters:
+	G = (5, 1)
+	p = 17
+	a = 2
+	b = 2
+	n = 19
+
+a) Assume "Bob" selected the secret number "beta"= 2. What is the point B?
+	B = (2)G
+	  = (6, 3)
+
+b) Assume "Alice" selected the secret number "alpha"= 18. What is the point A?
+	A = (18)G
+	  = (5, 16)
+
+c) Show that Bob and Alice will get the same point P, even though Bob does not
+know alpha and Alice does not know beta, but they both know A and B?
+
+Alice first receives Bob's B point and does the following computation:
+	(alpha)B = (18)B
+		 = 18 (2 G)
+		 = (36) G
+		 = (17) G
+		 = (6, 14) = point P
+
+Bob likewise receives Alice's A point and does the following computation:
+	(beta)A = (2)A
+		= 2 (18 G)
+		= (36) G
+		= (17) G
+		= (6, 14) = point P
+
