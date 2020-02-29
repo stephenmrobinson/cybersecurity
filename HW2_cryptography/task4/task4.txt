@@ -1,0 +1,30 @@
+Stephen Robinson
+CSCI 373 - Cybersecurity
+February 24, 2020
+Task 4 Key Steps
+
+Encrypting the message:
+
+First, I generated the private key using the following command:
+	openssl genrsa -out rsa.private
+
+Then, I used the private key to generate the public key using the following command:
+	openssl rsa -in rsa.private -pubout > key.pub
+
+Next, I created a random key using:
+	openssl rand -hex 64 > key.bin
+
+I was then able to encrypt the decrypted message from this task using the command:
+	openssl enc -aes-256-cbc -salt -in task4_message.txt -out task4_message.txt.enc -pass file:./key.bin
+
+Lastly, I encrypted the random key with my public key:
+	openssl rsautl -encrypt -inkey key.pub -pubin -in key.bin -out key.bin.enc
+
+
+To Decrypt the message:
+
+First, decrypt the provided random key using the provided private key:
+	openssl rsautl -decrypt -inkey rsa.private -in key.bin.enc -out key.bin
+
+Then, decrypt the message using the now decrypted random key:
+	openssl enc -d -aes-256-cbc -in task4_message.txt.enc -out task4_message.txt -pass file:./key.bin
