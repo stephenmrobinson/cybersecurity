@@ -1,0 +1,17 @@
+Stephen Robinson
+CSCI 373 - Cybersecurity
+February 24, 2020
+Task 5 - Signing and Verifying
+
+To determine the correct file, I ran the command:
+	openssl dgst -sha256 -verify  <(openssl x509 -in task5_public.pem  -pubkey -noout) -signature task5_message_sig.sha256 task5_message#.txt
+
+With each of the three given messages (replacing the # with 1, 2, or 3).
+
+Upon running the command for task5_message3.txt I received the message 'Verified OK
+
+
+To sign the correct file, I simply ran the command:
+	openssl dgst -sha256 -sign rsa.private -out task5.sig task5_message3.txt
+
+Where rsa.private is my private key from Task 4 and task5.sig is the output signature file	
